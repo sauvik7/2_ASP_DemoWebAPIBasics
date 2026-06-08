@@ -24,5 +24,27 @@ namespace ASP_DemoWebAPIBasics.Services
             _orderRepository.Save(order);
             _notifier.Send("Your order has been placed successfully.");
         }
+
+        public IEnumerable<Order> GetAll()
+        {
+            return _orderRepository.GetAll();
+        }
+
+        public Order? GetById(int id)
+        {
+            return _orderRepository.GetById(id);
+        }
+
+        public void Update(Order order)
+        {
+            _orderRepository.Update(order);
+            _notifier.Send($"Your order {order.Id} has been updated.");
+        }
+
+        public void Delete(int id)
+        {
+            _orderRepository.Delete(id);
+            _notifier.Send($"Your order {id} has been deleted.");
+        }
     }
 }

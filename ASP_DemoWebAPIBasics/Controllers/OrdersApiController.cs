@@ -33,5 +33,75 @@ namespace ASP_DemoWebAPIBasics.Controllers
                 return BadRequest(ModelState);
             }
         }
+
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            try
+            {
+                var orders = _orderService.GetAll();
+                return Ok(orders);
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, ex.Message);
+                return BadRequest(ModelState);
+            }
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult GetById(int id)
+        {
+            try
+            {
+                var order = _orderService.GetById(id);
+                if (order is null) return NotFound();
+                return Ok(order);
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, ex.Message);
+                return BadRequest(ModelState);
+            }
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult Update(int id, [FromBody] Order order)
+        {
+            try
+            {
+                if (!ModelState.IsValid) return BadRequest(ModelState);
+                if (order is null || order.Id != id) return BadRequest("Id mismatch or invalid order.");
+
+                var existing = _orderService.GetById(id);
+                if (existing is null) return NotFound();
+
+                _orderService.Update(order);
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, ex.Message);
+                return BadRequest(ModelState);
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            try
+            {
+                var existing = _orderService.GetById(id);
+                if (existing is null) return NotFound();
+
+                _orderService.Delete(id);
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, ex.Message);
+                return BadRequest(ModelState);
+            }
+        }
     }
 }
