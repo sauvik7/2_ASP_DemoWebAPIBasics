@@ -1,0 +1,68 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build Folders
+[Bb]in/
+[Oo]bj/
+**/bin/
+**/obj/
+
+# Rider
+.idea/
+
+# VS Code
+.vscode/
+
+# Resharper
+_ReSharper*/
+*.DotSettings.user
+
+# NuGet
+*.nupkg
+packages/
+.nuget/
+
+# MSBuild
+*.props.user
+*.targets.user
+
+# Entity Framework local DB
+*.mdf
+*.ldf
+
+# SQLite
+*.db
+*.sqlite
+
+# User secrets
+secrets.json
+
+# ASP.NET Core
+appsettings.Development.json
+
+# Logs
+*.log
+
+# Optional npm/yarn
+node_modules/
+
+# JetBrains Rider caches
+.idea/
+
+# OS files
+Thumbs.db
+.DS_Store
+
+# Coverage
+coverage.*
+
+# Sonar
+.sonarqube/
+
+# Binaries
+*.dll
+*.pdb
